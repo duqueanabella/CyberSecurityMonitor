@@ -4,3 +4,5 @@ __pycache__/
 database/security_events.db
 
 .vscode/
+
+database/test_security_events.db

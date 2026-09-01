@@ -2,7 +2,7 @@ import sys
 import os
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "detection"))
-from rules import check_process, check_connections
+from rules import check_process, check_connections # type: ignore
 
 
 def test_known_suspicious_name():
