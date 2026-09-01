@@ -14,8 +14,15 @@ def get_running_processes():
         capture_output=True,
         text=True
     )
-    process_names = result.stdout.strip().split("\n")
-    return [name.strip() for name in process_names if name.strip()]
+    lines = result.stdout.strip().split("\n")
+    processes = []
+    for line in lines:
+        line = line.strip()
+        if not line or "|" not in line:
+            continue
+        name, path = line.split("|",1)
+        processes.append((name.strip(),path.strip()))
+    return processes
 
 
 def main():
@@ -25,19 +32,21 @@ def main():
 
     init_db()
 
+
     processes = get_running_processes()
     print(f"Scanned {len(processes)} running processes.")
 
     found_threat = False
 
-    for process_name in processes:
-        if check_process(process_name):
+    for process_name, process_path in processes:
+        is_suspicious, reason = check_process(process_name, process_path)
+        if is_suspicious:
             create_alert(process_name)
             log_event(
                 event_type="PROCESS_SCAN",
                 process_name=process_name,
                 severity="HIGH",
-                description=f"Suspicious process detected: {process_name}"
+                description=f"Suspicious process detected: {process_name} ({reason}) at {process_path}"
             )
             found_threat = True
 
@@ -52,3 +61,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
