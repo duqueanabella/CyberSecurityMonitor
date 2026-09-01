@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+*.pyc
+database/security_events.db
+
+.vscode/
