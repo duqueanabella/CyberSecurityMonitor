@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cybersecurity Monitor </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛡️ Cybersecurity Monitor</h1>
+            <p class="subtitle">Real-time system activity monitoring</p>
+        </header>
+
+        <div class="stats-row">
+            <div class="stat-card">
+                <span class="stat-number" id="total-events">–</span>
+                <span class="stat-label">Total Events</span>
+            </div>
+            <div class="stat-card alert-card">
+                <span class="stat-number" id="total-alerts">–</span>
+                <span class="stat-label">Alerts</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="last-scan">–</span>
+                <span class="stat-label">Last Scan</span>
+            </div>
+        </div>
+
+        <h2>Recent Activity</h2>
+        <div id="events-list" class="events-list">
+            <p class="loading">loading events...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
